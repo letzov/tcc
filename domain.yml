@@ -1,0 +1,82 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60.0
+  carry_over_slots_to_new_session: true
+
+intents:
+- greet
+- what_vaccine
+- best_vaccine
+- when_vaccine
+- danger_vaccine
+- transmissao_vacina
+- vacina_jovens
+- variantes_vaccine
+- reacao_vacina
+- onde_vacinar
+- sem_segunda_dose
+- informar_idade
+- informar_cidade
+
+entities:
+- vaccine
+- calendar
+- transmissao
+- young
+- reação
+- variante
+- eficaz
+- safe
+- where
+- second
+- idade
+- cidade
+
+slots:
+  idade:  
+    type: text
+  cidade:
+    type: text
+
+
+responses:
+  utter_how_can_I_help:
+  - text: Bem vindo, sou o chat bot anti anti vacinas. Estou aqui para tirar suas dúvidas sobre as vacinas da covid-19
+  utter_name_vaccines:
+  - text: Janssen, Pfeizer, Astrazeneca, Coronavac
+  utter_efficiency:
+  - text: todas as vacinas são eficicientes. Segue a seguir as eficiencias das vacinas em porcentagem Pfeizer 95 Astrazeneca 70 Janssen  80 Coronavac   50
+  utter_ask_age:
+  - text: qual a sua idade?
+  utter_ask_city:
+  - text: qual a sua cidade?
+  utter_colateral_vaccine:
+  - text: todas as vacinas são seguras, no entanto as vacinas da Astrazeneca e da Janssen podem causar algum mal estar.
+  utter_vacinados:
+  - text: As pessoas que estiverem vacinadas podem sim transmitir o vírus. No entanto, as chances são pequenas. 
+  utter_populacao_jovem:
+  - text: Todas as vacinas são recomendadas para a população jovem, entre 15 e 25 anos, pois é faixa etária com menor indicie de complicacoes após a serem vacinados
+  utter_alergia:
+  - text: Todas vacinas podem causar as seguintes reações alérgicas -> dores no local da injeção, dores no corpo, febre e mal estar.
+  utter_variante:
+  - text: Segundo estudos de diversos laborátorios e pesquisadores, a vacina da Pfizer é a mais eficiente contra as variantes do coronavirus.
+  utter_local:
+  - text: as vacinas estão fornecidas princiapalmente em postos de saúde. Para obter informações mais detalhadas, pesquise no site da prefeitura da sua cidade
+  utter_apenas_primeira_dose:
+  - text: tomar apenas a primeira dose não garante a total eficácia da vacina. A coronavac tem uma eficacia de 50% após a primeira dose , enquanto as vacinas da Oxford e da Pfeizer apresentam 91% de eficacia depois da primeira dose, mas o percentual cai 42 dias após tomar a primeira dose
+
+actions:
+- utter_how_can_I_help
+- utter_name_vaccines
+- utter_efficiency
+- utter_ask_age
+- utter_colateral_vaccine
+- utter_vacinados
+- utter_populacao_jovem
+- utter_alergia
+- utter_variante
+- utter_local
+- utter_apenas_primeira_dose
+- action_search
+- utter_ask_city
+- search_google
