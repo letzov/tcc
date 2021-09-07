@@ -8,6 +8,13 @@
 * informar_cidade{"cidade":"ararangua"}
   - search_google
     
+## storie2
+* greet
+  - utter_how_can_I_help
+* eficacia_vacinas {"eficacia":"eficacia"}
+  - utter_uma_ou_todas
+  - utter_name_all
+
 
 
 
