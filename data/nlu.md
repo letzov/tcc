@@ -11,6 +11,12 @@
 - a pessoa que não tomar a [segunda](second) dose está segura?
 - estou seguro se tomar apenas a [primeira](second) dose?
 
+## intent:eficacia_vacinas
+- qual a [eficacia](eficacia) das vacinas?
+- poderia me dizer qual a [eficacia](eficacia) das vacinas?
+- as vacinas são [eficientes](eficacia)? 
+- qual a taxa de [eficiencia](eficacia) das vacinas?
+- qual a [eficiencia](eficacia) das vacinas?
 
 
 
