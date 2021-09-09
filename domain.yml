@@ -6,7 +6,6 @@ session_config:
 intents:
 - greet
 - what_vaccine
-- best_vaccine
 - when_vaccine
 - danger_vaccine
 - transmissao_vacina
@@ -19,7 +18,6 @@ intents:
 - informar_cidade
 - eficacia_vacinas
 - todas_vacinas
-
 
 entities:
 - vaccine
@@ -34,8 +32,8 @@ entities:
 - second
 - idade
 - cidade
-- all
 - eficacia
+- all
 
 slots:
   idade:  
@@ -45,19 +43,18 @@ slots:
   all:
     type: text 
 
+
 responses:
   utter_how_can_I_help:
   - text: Bem vindo, sou o chat bot anti anti vacinas. Estou aqui para tirar suas dúvidas sobre as vacinas da covid-19
   utter_name_vaccines:
-  - text: Janssen, Pfeizer, Astrazeneca, Coronavac
-  utter_efficiency:
-  - text: todas as vacinas são eficicientes. Segue a seguir as eficiencias das vacinas em porcentagem Pfeizer 95 Astrazeneca 70 Janssen  80 Coronavac   50
+  - text: Janssen, Pfeizer, Astrazeneca, Coronavac. A Moderna chegará em breve.
   utter_ask_age:
   - text: qual a sua idade?
   utter_ask_city:
   - text: qual a sua cidade?
   utter_colateral_vaccine:
-  - text: todas as vacinas são seguras, no entanto as vacinas da Astrazeneca e da Janssen podem causar algum mal estar.
+  - text: todas as vacinas são seguras, no entanto todas podem apresentar reações como dor de cabeça e febre.
   utter_vacinados:
   - text: As pessoas que estiverem vacinadas podem sim transmitir o vírus. No entanto, as chances são pequenas. 
   utter_populacao_jovem:
@@ -72,10 +69,12 @@ responses:
   - text: tomar apenas a primeira dose não garante a total eficácia da vacina. A coronavac tem uma eficacia de 50% após a primeira dose , enquanto as vacinas da Oxford e da Pfeizer apresentam 91% de eficacia depois da primeira dose, mas o percentual cai 42 dias após tomar a primeira dose
   utter_uma_ou_todas:
   - text: gostaria de saber de uma vacina específica ou de todas?
+  utter_eficiencia_todas2:
+  - text: teste
+
 actions:
 - utter_how_can_I_help
 - utter_name_vaccines
-- utter_efficiency
 - utter_ask_age
 - utter_colateral_vaccine
 - utter_vacinados
@@ -88,3 +87,4 @@ actions:
 - utter_ask_city
 - search_google
 - utter_uma_ou_todas
+- utter_eficiencia_todas2
