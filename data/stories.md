@@ -1,28 +1,24 @@
 ## storie
 * greet
   - utter_how_can_I_help
-* when_vaccine{"calendar":"when"}
+* when_vaccine{"calendar":"quando"}
   - utter_ask_age
 * informar_idade{"idade":"20"}
   - utter_ask_city
 * informar_cidade{"cidade":"ararangua"}
   - search_google
     
+
+
+
 ## storie2
 * greet
   - utter_how_can_I_help
-* eficacia_vacinas {"eficacia":"eficacia"}
+* eficacia_vacinas 
   - utter_uma_ou_todas
-  - utter_name_all
+* todas_vacinas
+  - utter_eficiencia_todas2
 
-
-
-
-## storie2
-* greet
-  - utter_how_can_I_help
-* danger_vaccine{"safe":"names"}
-  - utter_colateral_vaccine
 
 ## storie3
 * greet
