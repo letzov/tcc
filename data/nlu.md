@@ -12,12 +12,16 @@
 - estou seguro se tomar apenas a [primeira](second) dose?
 
 ## intent:eficacia_vacinas
-- qual a [eficacia](eficacia) das vacinas?
-- poderia me dizer qual a [eficacia](eficacia) das vacinas?
-- as vacinas são [eficientes](eficacia)? 
-- qual a taxa de [eficiencia](eficacia) das vacinas?
-- qual a [eficiencia](eficacia) das vacinas?
+- qual a eficacia das vacinas?
+- poderia me dizer qual a eficacia das vacinas?
+- as vacinas são eficientes? 
+- qual a taxa de eficiencia das vacinas?
+- qual a eficiencia das vacinas?
 
+## intent:todas_vacinas
+- todas
+- todas elas
+- todas as vacinas
 
 
 
@@ -74,16 +78,7 @@
 - quais sao as [vacinas](vaccine) disponiveis 
 - poderia me dizer quais sao as vacinas [vacinas](vaccine)?
 
-## intent:best_vaccine
-- qual a [pior](eficaz) vacina?
-- qual a [melhor](eficaz) vacina?
-- existe uma vacina [pior](eficaz)?
-- existe uma vacina mais [eficiente](eficaz)?
-- todas as vacinas são [eficazes](eficaz)?
-## synonym:melhor
-- pior
-- eficiente
-- eficazes
+
 
 ## intent:danger_vaccine
 - existe alguma vacina que é [arriscada](safe) para a saúde?
