@@ -18,6 +18,7 @@ intents:
 - informar_cidade
 - eficacia_vacinas
 - todas_vacinas
+- spec_vacinas
 
 entities:
 - vaccine
@@ -33,14 +34,14 @@ entities:
 - idade
 - cidade
 - eficacia
-- all
+
 
 slots:
   idade:  
     type: text
   cidade:
     type: text
-  all:
+  eficacia:
     type: text 
 
 
@@ -69,8 +70,8 @@ responses:
   - text: tomar apenas a primeira dose não garante a total eficácia da vacina. A coronavac tem uma eficacia de 50% após a primeira dose , enquanto as vacinas da Oxford e da Pfeizer apresentam 91% de eficacia depois da primeira dose, mas o percentual cai 42 dias após tomar a primeira dose
   utter_uma_ou_todas:
   - text: gostaria de saber de uma vacina específica ou de todas?
-  utter_eficiencia_todas2:
-  - text: teste
+  #utter_eficiencia_todas2:
+  #- text: teste
 
 actions:
 - utter_how_can_I_help
@@ -87,4 +88,5 @@ actions:
 - utter_ask_city
 - search_google
 - utter_uma_ou_todas
-- utter_eficiencia_todas2
+- action_gg
+- action_uma
