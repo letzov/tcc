@@ -125,6 +125,14 @@
 - [turvo](cidade)
 - [itajai](cidade)
 
+## intent:spec_vacinas
+
+- [Pfizer](eficacia)
+- [Coronavac](eficacia)
+- [Astrazeneca](eficacia)
+- [Moderna](eficacia)
+- [Janssen](eficacia)
+- [Sputnik](eficaci)
 
 
 

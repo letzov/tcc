@@ -17,7 +17,15 @@
 * eficacia_vacinas 
   - utter_uma_ou_todas
 * todas_vacinas
-  - utter_eficiencia_todas2
+  - action_gg
+
+## storie2
+* greet
+  - utter_how_can_I_help
+* eficacia_vacinas 
+  - utter_uma_ou_todas
+* spec_vacinas{"eficacia":"Pfizer"}
+  - action_uma
 
 
 ## storie3
