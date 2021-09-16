@@ -19,12 +19,15 @@
 * todas_vacinas
   - action_gg
 
-## storie2
+## storie23
 * greet
   - utter_how_can_I_help
 * eficacia_vacinas 
   - utter_uma_ou_todas
 * spec_vacinas{"eficacia":"Pfizer"}
+  - nome_vacinas_form
+  - form {"eficacia":"nome_vacinas_form"}
+  - form {"name":"null"}
   - action_uma
 
 
