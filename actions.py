@@ -5,6 +5,8 @@ except ImportError:
 from typing import Any, Text, Dict, List ## Datatypes
 from rasa_sdk import Action, Tracker  ##
 from rasa_sdk.executor import CollectingDispatcher
+from rasa_sdk.forms import FormAction
+
 
 class kek(Action): # pode ser qualquer coisa, mas por padrão utilizaremos o nome da ação
 
@@ -14,7 +16,7 @@ class kek(Action): # pode ser qualquer coisa, mas por padrão utilizaremos o nom
     def run(self, dispatcher: CollectingDispatcher,
         tracker: Tracker,
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        #dispatcher.utter_message(text= 'boa tio')
+       
 
         vacinas = {
         'Astrazeneca': {'numero de doses': 2, 'eficiencia': {'1 dose':'76%', '2 dose': '81%'}, 'eficiencia contra variantes': '92%', 'intervalo entre as doses': '3 meses', 'efeitos colaterais': 'Dor no local da injeção, dor de cabeça, fadiga, dor no corpo e mal esta'},
@@ -39,10 +41,10 @@ class kek(Action): # pode ser qualquer coisa, mas por padrão utilizaremos o nom
         dispatcher.utter_message(text ='A vacina ' + nome6 + ' possui ' + caracteristica + ": " + str(vacinas[nome6][caracteristica]))
         return []
 
-class alfa(Action): # pode ser qualquer coisa, mas por padrão utilizaremos o nome da ação
+class alfa(Action): 
 
     def name(self) -> Text:
-        return "action_uma" # precisa ser o mesmo nome da ação utilizada nas stories e domain file
+        return "action_uma" 
     
     def run(self, dispatcher: CollectingDispatcher,
         tracker: Tracker,
@@ -66,14 +68,54 @@ class alfa(Action): # pode ser qualquer coisa, mas por padrão utilizaremos o no
         if eficacia == "Moderna":
             dispatcher.utter_message(text ='1 dose 94%, 2 dose 94%')
 
-        return []
+class NomeVacinasForm(FormAction):
+
+    def name(self) -> Text:
+
+        return "nome_vacinas_form"
+
+    @staticmethod
+    def required_slots(tracker: Tracker) -> List[Text]:
+
+        return ["eficacia"]
+
+
+    @staticmethod
+    def eficacia_db() -> List[Text]:
+        return [
+            "Pfizer",
+            "Coronavac",
+            
+        ]
+        
+    def validate_spec(
+        self,
+        value: Text,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> Dict[Text, Any]:
+        if value in self.eficacia_db():
+            return {"eficacia": value}
+        else: 
+            dispatcher.utter_message(template="utter_vacina_invalida")
+            return {"eficacia": None}
+
+    def submit(self, dispatcher: CollectingDispatcher,
+            tracker: Tracker,
+            domain: Dict[Text,Any],
+    )   -> List[Dict]:
+        return []  
+        
+    
 
 
 
 
 
 
-class ActionSearch(Action): # pode ser qualquer coisa, mas por padrão utilizaremos o nome da ação
+
+class ActionSearch(Action): 
 
     def name(self) -> Text:
         return "action_search" # precisa ser o mesmo nome da ação utilizada nas stories e domain file
@@ -107,14 +149,6 @@ class Google(Action): # pode ser qualquer coisa, mas por padrão utilizaremos o 
             print(j)
         return []
 
-########################
+    
 
-class ActionShowLatestNews(Action):
 
-    def name(self) -> Text:
-        return "action_show_latest_news"
-
-    def run(self, dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        dispatcher.utter_message(text='Aqui estão as ultimas noticias..')
