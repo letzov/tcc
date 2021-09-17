@@ -106,10 +106,10 @@
 
 
 ## intent:when_vaccine
-- [quando](calendar) vou poder me vacinar?
-- que [dia](calendar) vou poder me vacinar?
-- [quando](calendar) minha faixa etaria vai poder se vacinar?
-- que [dia](calendar) minha faixa etaria vai tomar a vacina?
+- quando vou poder me vacinar?
+- que dia vou poder me vacinar?
+- quando minha faixa etaria vai poder se vacinar?
+- que dia minha faixa etaria vai tomar a vacina?
 
 
 

@@ -1,7 +1,7 @@
 ## storie
 * greet
   - utter_how_can_I_help
-* when_vaccine{"calendar":"quando"}
+* when_vaccine
   - utter_ask_age
 * informar_idade{"idade":"20"}
   - utter_ask_city
