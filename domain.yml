@@ -22,7 +22,6 @@ intents:
 
 entities:
 - vaccine
-- calendar
 - transmissao
 - young
 - reação
