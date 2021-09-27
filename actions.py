@@ -3,152 +3,202 @@ try:
 except ImportError:
     print ("no module named 'google' found")
 from typing import Any, Text, Dict, List ## Datatypes
-from rasa_sdk import Action, Tracker  ##
+from rasa_sdk import Action, Tracker, FormValidationAction  ##
 from rasa_sdk.executor import CollectingDispatcher
-from rasa_sdk.forms import FormAction
+from rasa_sdk.types import DomainDict
 
 
-class kek(Action): # pode ser qualquer coisa, mas por padrão utilizaremos o nome da ação
+vacinas = {
+'Astrazeneca': {'numero de doses': 2, 'eficiencia': {'1 dose':'76%', '2 dose': '81%'}, 'eficiencia contra variantes': '92%', 'intervalo entre as doses': '3 meses', 'efeitos colaterais': 'Dor no local da injeção, dor de cabeça, fadiga, dor no corpo e mal esta'},
+'Pfizer': {'numero de doses': 2, 'eficiencia': {'1 dose':'61%', '2 dose': '88%'}, 'eficiencia contra variantes': '88%', 'intervalo entre as doses': '3 meses', 'efeitos colaterais':'Dor no local da injeção, dor de cabeça, fadiga, dor no corpo e mal estar'},
+'Coronavac': {'numero de doses': 2, 'eficiencia': {'1 dose':'sem dados%', '2 dose': '63%'}, 'eficiencia contra variantes': 'entre 69% e 78%', 'intervalo entre as doses': '21 dias', 'efeitos colaterais':'Dor no local da injeção, febre, cansaço e calafrios'},
+'Janssen': {'numero de doses': 1, 'eficiencia': {'1 dose':'85%', '2 dose': 'dose única'}, 'eficiencia contra variantes': '85%', 'intervalo entre as doses': 'dose única', 'efeitos colaterais':'Dor no local da injeção, vermelhidão, dores musculares, febre, náusea, dor no peito e falta de ar'},
+'Moderna': {'numero de doses': 2, 'eficiencia': {'1 dose':'94%', '2 dose': '94%'}, 'eficiencia contra variantes': '94%', 'intervalo entre as doses': '28 dias', 'efeitos colaterais':'Dor no local injeção, febre, vermelhidão, náusea e cansaço'},
+'Sputnik': {'numero de doses': 2, 'eficiencia': {'1 dose':'sem dados', '2 dose': '92%'}, 'eficiencia contra variantes': '81%', 'intervalo entre as doses': '21 dias', 'efeitos colaterais':'Dor no local injeção, febre, vermelhidão, náusea e cansaço'}
+}
+
+class actionEficienciaUma(Action):
 
     def name(self) -> Text:
-        return "action_gg" # precisa ser o mesmo nome da ação utilizada nas stories e domain file
+        return "action_inform_eficienciauma"
 
     def run(self, dispatcher: CollectingDispatcher,
         tracker: Tracker,
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-       
+        nome = tracker.get_slot('nomevacina')
+        if nome in vacinas:
+            dispatcher.utter_message(text ='A eficácia da vacina ' + nome + ' é de ' + vacinas[nome]['eficiencia']['1 dose'] + ' após a primeira dose e ' + vacinas[nome]['eficiencia']['2 dose'] + ' após a segunda dose.' )
+        else:
+            dispatcher.utter_message(text ='Vacina não encontrada na base de dados')
 
-        vacinas = {
-        'Astrazeneca': {'numero de doses': 2, 'eficiencia': {'1 dose':'76%', '2 dose': '81%'}, 'eficiencia contra variantes': '92%', 'intervalo entre as doses': '3 meses', 'efeitos colaterais': 'Dor no local da injeção, dor de cabeça, fadiga, dor no corpo e mal esta'},
-        'Pfizer': {'numero de doses': 2, 'eficiencia': {'1 dose':'61%', '2 dose': '88%'}, 'eficiencia contra variantes': '88%', 'intervalo entre as doses': '3 meses', 'efeitos colaterais':'Dor no local da injeção, dor de cabeça, fadiga, dor no corpo e mal estar'},
-        'Coronavac': {'numero de doses': 2, 'eficiencia': {'1 dose':'sem dados%', '2 dose': '63%'}, 'eficiencia contra variantes': 'entre 69% e 78%', 'intervalo entre as doses': '21 dias', 'efeitos colaterais':'Dor no local da injeção, febre, cansaço e calafrios'},
-        'Janssen': {'numero de doses': 1, 'eficiencia': {'1 dose':'85%', '2 dose': 'dose única'}, 'eficiencia contra variantes': '85%', 'intervalo entre as doses': 'dose única', 'efeitos colaterais':'Dor no local da injeção, vermelhidão, dores musculares, febre, náusea, dor no peito e falta de ar'},
-        'Moderna': {'numero de doses': 2, 'eficiencia': {'1 dose':'94%', '2 dose': '94%'}, 'eficiencia contra variantes': '94%', 'intervalo entre as doses': '28 dias', 'efeitos colaterais':'Dor no local injeção, febre, vermelhidão, náusea e cansaço'},
-        'Sputnik': {'numero de doses': 2, 'eficiencia': {'1 dose':'sem dados', '2 dose': '92%'}, 'eficiencia contra variantes': '81%', 'intervalo entre as doses': '21 dias', 'efeitos colaterais':'Dor no local injeção, febre, vermelhidão, náusea e cansaço'}
-        }
-        nome = 'Astrazeneca'
-        nome2 = 'Pfizer'
-        nome3 = 'Coronavac'
-        nome4 = 'Janssen'
-        nome5 = 'Moderna'
-        nome6 = 'Sputnik'
+class actionEficienciaUmaVariantes(Action):
+
+    def name(self) -> Text:
+        return "action_inform_eficienciauma_variantes"
+
+    def run(self, dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        nome = tracker.get_slot('nomevacina')
+        if nome in vacinas:
+            dispatcher.utter_message(text ='A eficácia contra as variantes da ' + nome + ' é de ' + vacinas[nome][eficiencia]['1 dose'] )
+        else:
+            dispatcher.utter_message(text ='Vacina não encontrada na base de dados')
+
+
+
+class actionEficienciaTodas(Action): # pode ser qualquer coisa, mas por padrão utilizaremos o nome da ação
+
+    def name(self) -> Text:
+        return "action_inform_eficienciatodas" # precisa ser o mesmo nome da ação utilizada nas stories e domain file
+
+    def run(self, dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        caracteristica = 'eficiencia'
+        for nome in vacinas.keys():
+            dispatcher.utter_message(text ='A vacina ' + nome + ' possui ' + caracteristica + ": " + str(vacinas[nome][caracteristica]))
+        return []
+
+class actionEficienciaTodasVariantes(Action): # pode ser qualquer coisa, mas por padrão utilizaremos o nome da ação
+
+    def name(self) -> Text:
+        return "action_inform_eficienciatodas_variantes" # precisa ser o mesmo nome da ação utilizada nas stories e domain file
+
+    def run(self, dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         caracteristica = 'eficiencia contra variantes'
-        dispatcher.utter_message(text ='A vacina ' + nome + ' possui ' + caracteristica + ": " + str(vacinas[nome][caracteristica]))
-        dispatcher.utter_message(text ='A vacina ' + nome2 + ' possui ' + caracteristica + ": " + str(vacinas[nome2][caracteristica]))
-        dispatcher.utter_message(text ='A vacina ' + nome3 + ' possui ' + caracteristica + ": " + str(vacinas[nome3][caracteristica]))
-        dispatcher.utter_message(text ='A vacina ' + nome4 + ' possui ' + caracteristica + ": " + str(vacinas[nome4][caracteristica]))
-        dispatcher.utter_message(text ='A vacina ' + nome5 + ' possui ' + caracteristica + ": " + str(vacinas[nome5][caracteristica]))
-        dispatcher.utter_message(text ='A vacina ' + nome6 + ' possui ' + caracteristica + ": " + str(vacinas[nome6][caracteristica]))
-        return []
-
-class alfa(Action): 
-
-    def name(self) -> Text:
-        return "action_uma" 
-    
-    def run(self, dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        eficacia = tracker.get_slot('eficacia')
-        if eficacia == "Pfizer":
-            dispatcher.utter_message(text ='1 dose 61%, 2 dose 88%')
-
-        if eficacia == "Coronavac":
-            dispatcher.utter_message(text ='primeira dose sem dados, 2 dose 63%')
-        
-        if eficacia == "Astrazeneca":
-            dispatcher.utter_message(text ='1 dose 76%, 2 dose 81%')
-
-        if eficacia == "Janssen":
-            dispatcher.utter_message(text ='85%')
-
-        if eficacia == "Sputnik":
-            dispatcher.utter_message(text ='primeira dose sem dados, 2 dose 92%')
-
-        if eficacia == "Moderna":
-            dispatcher.utter_message(text ='1 dose 94%, 2 dose 94%')
-
-class NomeVacinasForm(FormAction):
-
-    def name(self) -> Text:
-
-        return "nome_vacinas_form"
-
-    @staticmethod
-    def required_slots(tracker: Tracker) -> List[Text]:
-
-        return ["eficacia"]
-
-
-    @staticmethod
-    def eficacia_db() -> List[Text]:
-        return [
-            "Pfizer",
-            "Coronavac",
-            
-        ]
-        
-    def validate_spec(
-        self,
-        value: Text,
-        dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: Dict[Text, Any],
-    ) -> Dict[Text, Any]:
-        if value in self.eficacia_db():
-            return {"eficacia": value}
-        else: 
-            dispatcher.utter_message(template="utter_vacina_invalida")
-            return {"eficacia": None}
-
-    def submit(self, dispatcher: CollectingDispatcher,
-            tracker: Tracker,
-            domain: Dict[Text,Any],
-    )   -> List[Dict]:
-        return []  
-        
-    
-
-
-
-
-
-
-
-class ActionSearch(Action): 
-
-    def name(self) -> Text:
-        return "action_search" # precisa ser o mesmo nome da ação utilizada nas stories e domain file
-
-    def run(self, dispatcher: CollectingDispatcher,
-        tracker: Tracker,
-        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-        # podemos chamar banco de dados 
-        # chamar alguma API
-        # fazer qualquer coisa
-        # adepois podemos dar um retorno ao usuário
-        idade = tracker.get_slot('idade')
-        cidade = tracker.get_slot('cidade')
-        dispatcher.utter_message(text= 'pessoas com '+ str(idade)+' anos serão vacinadas semana que vem na cidade ' +str(cidade)) 
-        return []
+        for nome in vacinas.keys():
+            dispatcher.utter_message(text ='A vacina ' + nome + ' possui ' + caracteristica + ": " + str(vacinas[nome][caracteristica]))
 
 class Google(Action): # pode ser qualquer coisa, mas por padrão utilizaremos o nome da ação
 
     def name(self) -> Text:
-        return "search_google" # precisa ser o mesmo nome da ação utilizada nas stories e domain file
+        return "action_search_google" # precisa ser o mesmo nome da ação utilizada nas stories e domain file
 
     def run(self, dispatcher: CollectingDispatcher,
         tracker: Tracker,
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         idade = tracker.get_slot('idade')
         cidade = tracker.get_slot('cidade')
-        query =  "vacinacao" +str(cidade) +str(idade) 
+        query =  "vacinacao" +str(cidade) +str(idade)
         resultado = search(query)
         dispatcher.utter_message(text= 'voce pode encontrar essa informação em: '+str(resultado[0]))
         for j in search(query):
             print(j)
         return []
 
-    
+
+class actionEfeitoscolateraisespecifica(Action):
+
+    def name(self) -> Text:
+        return "action_colaterais_uma_vacina"
+
+    def run(self, dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        nome = tracker.get_slot('nomevacina')
+        if nome in vacinas:
+            dispatcher.utter_message(text ='Os efeitos colaterais da vacina ' + nome + ' são: ' + vacinas[nome]['efeitos colaterais'] )
+        else:
+            dispatcher.utter_message(text ='Vacina não encontrada na base de dados')
+
+class actionEfeitoscolaterais(Action): # pode ser qualquer coisa, mas por padrão utilizaremos o nome da ação
+
+    def name(self) -> Text:
+        return "action_colaterais" # precisa ser o mesmo nome da ação utilizada nas stories e domain file
+
+    def run(self, dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        caracteristica = 'efeitos colaterais'
+        for nome in vacinas.keys():
+            dispatcher.utter_message(text ='A vacina ' + nome + ' possui os seguintes '  + caracteristica + ": "  + str(vacinas[nome][caracteristica]))
+        return []
+
+class actionintervaloentretodas(Action): # pode ser qualquer coisa, mas por padrão utilizaremos o nome da ação
+
+    def name(self) -> Text:
+        return "action_intervalo_todas_doses" # precisa ser o mesmo nome da ação utilizada nas stories e domain file
+
+    def run(self, dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        caracteristica = 'intervalo entre as doses'
+        for nome in vacinas.keys():
+            dispatcher.utter_message(text ='O ' + caracteristica + ' da vacina '  + nome + " é: "  + str(vacinas[nome][caracteristica]))
+        return []
 
 
+class actionIntervaloEpecifica(Action):
+
+    def name(self) -> Text:
+        return "action_intervalo_doses"
+
+    def run(self, dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        nome = tracker.get_slot('nomevacina')
+        if nome in vacinas:
+            dispatcher.utter_message(text ='O intervalo entre as doses da vacina ' + nome + ' é: ' + vacinas[nome]['intervalo entre as doses'] )
+        else:
+            dispatcher.utter_message(text ='Vacina não encontrada na base de dados')
+
+
+class actioneficacia1(Action):
+
+    def name(self) -> Text:
+        return "action_eficacia_primeira_dose"
+
+    def run(self, dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        nome = tracker.get_slot('nomevacina')
+        if nome in vacinas:
+            dispatcher.utter_message(text ='A eficiencia da primeira dose da ' + nome + ' é: ' + vacinas[nome]['eficiencia']['1 dose'] )
+        else:
+            dispatcher.utter_message(text ='Vacina não encontrada na base de dados')
+
+
+class actioneficacia2(Action):
+
+    def name(self) -> Text:
+        return "action_eficacia_segunda_dose"
+
+    def run(self, dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        nome = tracker.get_slot('nomevacina')
+        if nome in vacinas:
+            dispatcher.utter_message(text ='A eficiencia da segunda dose da ' + nome + ' é: ' + vacinas[nome]['eficiencia']['2 dose'] )
+        else:
+            dispatcher.utter_message(text ='Vacina não encontrada na base de dados')
+
+
+
+
+
+
+
+
+class ValidateNameForm(FormValidationAction):
+    def name(self) -> Text:
+        return "validate_nomevacina_form"
+
+    def validate_nomevacina(
+        self,
+        slot_value: Any,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: DomainDict,
+    ) -> Dict[Text, Any]:
+        """Validate `nomevacina` value."""
+        print(f"Nome fornecido = {slot_value}")
+        if slot_value in vacinas:
+            print(f"Nome válido = {slot_value}")
+            return {"nomevacina": slot_value}
+        else:
+            print(f"Nome Inválido = {slot_value}")
+            dispatcher.utter_message(text=f"Nome inválido")
+            return {"nomevacina": None}

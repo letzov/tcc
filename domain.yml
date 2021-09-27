@@ -5,91 +5,86 @@ session_config:
 
 intents:
 - greet
-- what_vaccine
 - when_vaccine
-- danger_vaccine
-- transmissao_vacina
-- vacina_jovens
-- variantes_vaccine
-- reacao_vacina
-- onde_vacinar
-- sem_segunda_dose
 - informar_idade
 - informar_cidade
 - eficacia_vacinas
-- todas_vacinas
-- spec_vacinas
+- saber_todas
+- saber_especifica
+- informar_nome_vacina
+- variantes_vacinas
+- efeitos_colaterais
+- intervalo_vacinas
+- eficacia_imediata
+- primeira_dose
+- segunda_dose
 
 entities:
-- vaccine
-- transmissao
-- young
-- reação
-- variante
-- eficaz
-- safe
-- where
-- second
 - idade
 - cidade
-- eficacia
+- nomevacina
 
 slots:
-  idade:  
+  idade:
     type: text
   cidade:
     type: text
-  eficacia:
-    type: text 
+  nomevacina:
+    type: text
+    auto_fill: true
+    influence_conversation: false
+
+forms:
+  nomevacina_form:
+    required_slots:
+      nomevacina:
+        - type: from_entity
+          entity: nomevacina
 
 
 responses:
   utter_how_can_I_help:
-  - text: Bem vindo, sou o chat bot anti anti vacinas. Estou aqui para tirar suas dúvidas sobre as vacinas da covid-19
-  utter_name_vaccines:
-  - text: Janssen, Pfeizer, Astrazeneca, Coronavac. A Moderna chegará em breve.
-  utter_ask_age:
+  - text: Bem vindo, sou o ChatBot para tirar suas dúvidas sobre as vacinas da covid-19. No que posso ajudar?
+  utter_ask_idade:
   - text: qual a sua idade?
-  utter_ask_city:
+  utter_ask_cidade:
   - text: qual a sua cidade?
-  utter_colateral_vaccine:
-  - text: todas as vacinas são seguras, no entanto todas podem apresentar reações como dor de cabeça e febre.
-  utter_vacinados:
-  - text: As pessoas que estiverem vacinadas podem sim transmitir o vírus. No entanto, as chances são pequenas. 
-  utter_populacao_jovem:
-  - text: Todas as vacinas são recomendadas para a população jovem, entre 15 e 25 anos, pois é faixa etária com menor indicie de complicacoes após a serem vacinados
-  utter_alergia:
-  - text: Todas vacinas podem causar as seguintes reações alérgicas -> dores no local da injeção, dores no corpo, febre e mal estar.
-  utter_variante:
-  - text: Segundo estudos de diversos laborátorios e pesquisadores, a vacina da Pfizer é a mais eficiente contra as variantes do coronavirus.
-  utter_local:
-  - text: as vacinas estão fornecidas princiapalmente em postos de saúde. Para obter informações mais detalhadas, pesquise no site da prefeitura da sua cidade
-  utter_apenas_primeira_dose:
-  - text: tomar apenas a primeira dose não garante a total eficácia da vacina. A coronavac tem uma eficacia de 50% após a primeira dose , enquanto as vacinas da Oxford e da Pfeizer apresentam 91% de eficacia depois da primeira dose, mas o percentual cai 42 dias após tomar a primeira dose
   utter_uma_ou_todas:
-  - text: gostaria de saber de uma vacina específica ou de todas?
+  - buttons:
+    - payload: /saber_todas
+      title: Todas
+    - payload: /saber_especifica
+      title: Especifica
+    text: Gostaria de saber essa informação sobre vacina específica ou de todas?
+  utter_primeira_ou_segunda:
+  - buttons:
+    - payload: /primeira_dose
+      title: Primeira dose
+    - payload: /segunda_dose
+      title: segunda dose
+    text: Gostaria de saber a eficácia da primeira ou da segunda dose?
   utter_vacina_invalida:
   - text: digite corretamente o nome da vacina
+  utter_ask_nomevacina:
+  - text: Qual o nome da vacina?
+  utter_info:
+  - text: Mais alguma informação que você gostaria sobre a vacina {nomevacina}?
 
 actions:
 - utter_how_can_I_help
-- utter_name_vaccines
-- utter_ask_age
-- utter_colateral_vaccine
-- utter_vacinados
-- utter_populacao_jovem
-- utter_alergia
-- utter_variante
-- utter_local
-- utter_apenas_primeira_dose
-- action_search
-- utter_ask_city
-- search_google
+- utter_ask_idade
+- utter_ask_cidade
+- action_search_google
 - utter_uma_ou_todas
-- action_gg
-- action_uma
 - utter_vacina_invalida
-
-
-forms:
-- nome_vacinas_form
+- action_inform_eficienciatodas
+- action_inform_eficienciatodas_variantes
+- action_inform_eficienciauma
+- action_inform_eficienciauma_variantes
+- validate_nomevacina_form
+- action_colaterais
+- action_colaterais_uma_vacina
+- action_intervalo_doses
+- action_intervalo_todas_doses
+- action_eficacia_primeira_dose
+- action_eficacia_segunda_dose
