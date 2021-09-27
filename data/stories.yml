@@ -1,0 +1,138 @@
+version: '2.0'
+
+stories:
+- story: quando se vacinar na minha cidade
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: when_vaccine
+  - action: utter_ask_idade
+  - intent: informar_idade
+    entities:
+    - idade
+  - action: utter_ask_cidade
+  - intent: informar_cidade
+    entities:
+    - cidade
+  - action: action_search_google
+
+
+- story: qual eficacia de todas as vacinas
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: eficacia_vacinas
+  - action: utter_uma_ou_todas
+  - intent: saber_todas
+  - action: action_inform_eficienciatodas
+
+- story: qual eficacia de de vacina especifica
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: eficacia_vacinas
+  - action: utter_uma_ou_todas
+  - intent: saber_especifica
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: action_inform_eficienciauma
+
+- story: qual a eficacia de todas as vacinas contra as variantes?
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: variantes_vacinas
+  - action: utter_uma_ou_todas
+  - intent: saber_todas
+  - action: action_inform_eficienciatodas_variantes
+
+- story: qual eficacia contra as variantes de uma vacina específica
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: variantes_vacinas
+  - action: utter_uma_ou_todas
+  - intent: saber_especifica
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: action_inform_eficienciauma_variantes
+
+- story: quais os efeitos colaterais das vacinas?
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: efeitos_colaterais
+  - action: utter_uma_ou_todas
+  - intent: saber_todas
+  - action: action_colaterais
+
+- story: quais os efeitos colaterais de uma vacina específica
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: efeitos_colaterais
+  - action: utter_uma_ou_todas
+  - intent: saber_especifica
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: action_colaterais_uma_vacina
+
+- story: quais os intervalos entre as doses das vacinas?
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: intervalo_vacinas
+  - action: utter_uma_ou_todas
+  - intent: saber_todas
+  - action: action_intervalo_todas_doses
+
+- story: qual o intervalo entre as doses de uma vacina específica?
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: intervalo_vacinas
+  - action: utter_uma_ou_todas
+  - intent: saber_especifica
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: action_intervalo_doses
+
+- story: qual a eficacia de uma vacina (primeira dose)
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: eficacia_imediata
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: utter_primeira_ou_segunda
+  - intent: primeira_dose
+  - action: action_eficacia_primeira_dose
+
+- story: qual a eficacia de uma vacina segunda dose
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: eficacia_imediata
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: utter_primeira_ou_segunda
+  - intent: segunda_dose
+  - action: action_eficacia_segunda_dose

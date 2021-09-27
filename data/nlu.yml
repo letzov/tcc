@@ -1,0 +1,96 @@
+
+version: '2.0'
+
+nlu:
+
+- intent: greet
+  examples: |
+    - oi
+    - ola
+    - bom dia
+    - boa tarde
+    - boa noite
+
+- intent: variantes_vacinas
+  examples: |
+    - qual a eficacia das vacinas contra as variantes?
+    - qual a eficiencia das vacinas contra as variantes?
+    - qual a eficacia das vacinas contra as cepas?
+
+
+- intent: efeitos_colaterais
+  examples: |
+    - quais são os efeitos colaterais das vacinas?
+    - quais são as reações após tomar a vacina?
+    - quais são as reações após ser vacinado?
+    - as vacinas causam reações alérgicas?
+    - as vacinas causam efeitos colaterais?
+    - quem se vacinar pode apresentar reações?
+    - quem se vacinar pode ter efeitos colaterais?
+    - quais são os efeitos colaterais causados pelas vacinas?
+    -
+
+- intent: eficacia_vacinas
+  examples: |
+    - qual a eficacia das vacinas?
+    - poderia me dizer qual a eficacia das vacinas?
+    - as vacinas são eficientes?
+    - qual a taxa de eficiencia das vacinas?
+    - qual a eficiencia das vacinas?
+
+- intent: saber_todas
+  examples: |
+    - todas
+    - todas elas
+    - todas as vacinas
+
+- intent: saber_especifica
+  examples: |
+    - todas
+    - todas elas
+    - todas as vacinas
+
+- intent: when_vaccine
+  examples: |
+    - quando vou poder me vacinar?
+    - que dia vou poder me vacinar?
+    - quando minha faixa etaria vai poder se vacinar?
+    - que dia minha faixa etaria vai tomar a vacina?
+
+- intent: informar_idade
+  examples: |
+    - tenho [20](idade) anos
+    - [30](idade)
+    - tenho [60](idade) anos
+    - [50](idade) anos
+
+- intent: informar_cidade
+  examples: |
+    - moro em [ararangua](cidade)
+    - [criciuma](cidade)
+    - [turvo](cidade)
+    - [itajai](cidade)
+
+- intent: informar_nome_vacina
+  examples: |
+    - [Pfizer](nomevacina)
+    - [Coronavac](nomevacina)
+    - [Astrazeneca](nomevacina)
+    - [Moderna](nomevacina)
+    - [Janssen](nomevacina)
+    - [Sputnik](nomevacina)
+
+- intent: intervalo_vacinas
+  examples: |
+    - qual o intervalo entre as doses das vacinas?
+    - quantos dias devo esperar para tomar a segunda dose da vacina?
+    - quanto tempo até tomar a segunda dose?
+    - quanto tempo leva para tomar a segunda dose?
+    - quantos dias entre a primeira e a segunda dose?
+
+- intent: eficacia_imediata
+  examples: |
+    - qual a eficacia da [Pfizer](nomevacina)
+    - qual a eficacia da [Coronavac](nomevacina)
+    - qual a eficiencia da [Pfizer](nomevacina)
+    - qual a eficiencia da [Pfizer](nomevacina)
