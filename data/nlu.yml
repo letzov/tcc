@@ -94,3 +94,16 @@ nlu:
     - qual a eficacia da [Coronavac](nomevacina)
     - qual a eficiencia da [Pfizer](nomevacina)
     - qual a eficiencia da [Pfizer](nomevacina)
+
+- intent: eficacia_faixa_etaria
+  examples: |
+    - qual a eficacia das vacinas por faixa etária?
+    - qual a eficienca das vacinas por faixa etaria?
+    - as vacinas tem a mesma eficacia por faixa etaria?
+
+
+- intent: fora_do_escopo
+  examples: |
+    - cloroquina funciona?
+    - vacinas causam autismo?
+    - vacinas causam doenças?
