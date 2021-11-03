@@ -5,6 +5,7 @@ session_config:
 
 intents:
 - greet
+- fora_do_escopo
 - when_vaccine
 - informar_idade
 - informar_cidade
@@ -18,6 +19,10 @@ intents:
 - eficacia_imediata
 - primeira_dose
 - segunda_dose
+- eficacia_faixa_etaria
+- positivo
+- negativo
+- fim_chatbot
 
 entities:
 - idade
@@ -43,6 +48,8 @@ forms:
 
 
 responses:
+  utter_fora_do_escopo:
+  - text: desculpa, o bot não foi programado para responder essas perguntas
   utter_how_can_I_help:
   - text: Bem vindo, sou o ChatBot para tirar suas dúvidas sobre as vacinas da covid-19. No que posso ajudar?
   utter_ask_idade:
@@ -69,6 +76,19 @@ responses:
   - text: Qual o nome da vacina?
   utter_info:
   - text: Mais alguma informação que você gostaria sobre a vacina {nomevacina}?
+  utter_ask_user_question:
+  - buttons:
+    - payload: /positivo
+      title: Sim
+    - payload: /negativo
+      title: não
+    text: gostaria de saber algo a mais?
+  utter_fim:
+    - text: fim      
+  utter_goodbye:
+  - text: volte sempre
+
+
 
 actions:
 - utter_how_can_I_help
@@ -87,4 +107,9 @@ actions:
 - action_intervalo_doses
 - action_intervalo_todas_doses
 - action_eficacia_primeira_dose
-- action_eficacia_segunda_dose
+- action_faixa_etaria_todas
+- action_faixa_etaria_individual
+- utter_fora_do_escopo
+- utter_ask_user_question
+- utter_fim
+- utter_goodbye
