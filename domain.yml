@@ -38,7 +38,7 @@ slots:
     type: text
     auto_fill: true
     influence_conversation: false
-
+    
 forms:
   nomevacina_form:
     required_slots:
@@ -85,8 +85,8 @@ responses:
     text: gostaria de saber algo a mais?
   utter_fim:
     - text: fim      
-  utter_goodbye:
-  - text: volte sempre
+ # utter_goodbye:
+  #- text: volte sempre
 
 
 
@@ -107,9 +107,10 @@ actions:
 - action_intervalo_doses
 - action_intervalo_todas_doses
 - action_eficacia_primeira_dose
+- action_eficacia_segunda_dose
 - action_faixa_etaria_todas
 - action_faixa_etaria_individual
 - utter_fora_do_escopo
 - utter_ask_user_question
 - utter_fim
-- utter_goodbye
+#- utter_goodbye

@@ -45,8 +45,6 @@ class actionEficienciaUmaVariantes(Action):
         else:
             dispatcher.utter_message(text ='Vacina não encontrada na base de dados')
 
-
-
 class actionEficienciaTodas(Action): # pode ser qualquer coisa, mas por padrão utilizaremos o nome da ação
 
     def name(self) -> Text:
@@ -159,7 +157,21 @@ class actioneficacia1(Action):
             dispatcher.utter_message(text ='A eficacia da primeira dose da ' + nome + ' é: ' + vacinas[nome]['eficiencia']['1 dose'] )
         else:
             dispatcher.utter_message(text ='Vacina não encontrada na base de dados')
-            
+
+
+class actioneficacia2(Action):
+
+    def name(self) -> Text:
+        return "action_eficacia_segunda_dose"
+
+    def run(self, dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+        nome = tracker.get_slot('nomevacina')
+        if nome in vacinas:
+            dispatcher.utter_message(text ='A eficacia da segunda dose da ' + nome + ' é: ' + vacinas[nome]['eficiencia']['2 dose'] )
+        else:
+            dispatcher.utter_message(text ='Vacina não encontrada na base de dados')
 
 class actionfaixaetariaall(Action): # pode ser qualquer coisa, mas por padrão utilizaremos o nome da ação
 
@@ -189,15 +201,6 @@ class actionfaixaetariasingle(Action):
         else:
             dispatcher.utter_message(text ='Vacina não encontrada na base de dados')
 
-
-
-
-
-
-
-
-
-
 class ValidateNameForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_nomevacina_form"
@@ -218,3 +221,4 @@ class ValidateNameForm(FormValidationAction):
             print(f"Nome Inválido = {slot_value}")
             dispatcher.utter_message(text=f"Nome inválido")
             return {"nomevacina": None}
+
