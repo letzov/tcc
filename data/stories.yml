@@ -18,27 +18,6 @@ stories:
   - action: utter_ask_user_question
   - checkpoint: check_asked_question
 
-- story: usuario continua
-  steps:
-  - checkpoint: check_asked_question
-  - intent: afirmar
-  - action: utter_how_can_I_help
-  - checkpoint: check_flow_finished
-
-- story: usuario para
-  steps:
-  - checkpoint: check_asked_question
-  - intent: negar
-  - action: utter_fim
-  - checkpoint: check_flow_finished
-
-- story: fim fluxo
-  steps:
-  - checkpoint: check_flow_finished
-  - intent: fim_chatbot
-  - action: utter_goodbye
-
-
 - story: qual eficacia de todas as vacinas
   steps:
   - intent: greet
@@ -50,9 +29,14 @@ stories:
   - action: utter_ask_user_question
   - checkpoint: check_asked_question
 
-
-
-
+- story: qual eficacia de todas as vacinas 2
+  steps:
+  - intent: eficacia_vacinas
+  - action: utter_uma_ou_todas
+  - intent: saber_todas
+  - action: action_inform_eficienciatodas
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
 
 - story: qual eficacia de de vacina especifica
   steps:
@@ -70,11 +54,33 @@ stories:
   - action: utter_ask_user_question
   - checkpoint: check_asked_question
 
+- story: qual eficacia de de vacina especifica 2
+  steps:
+  - intent: eficacia_vacinas
+  - action: utter_uma_ou_todas
+  - intent: saber_especifica
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: action_inform_eficienciauma
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
 
-- story: qual a eficacia de todas as vacinas contra as variantes?
+- story: qual a eficacia de todas as vacinas contra as variantes 
   steps:
   - intent: greet
   - action: utter_how_can_I_help
+  - intent: variantes_vacinas
+  - action: utter_uma_ou_todas
+  - intent: saber_todas
+  - action: action_inform_eficienciatodas_variantes
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+- story: qual a eficacia de todas as vacinas contra as variantes 2
+  steps:
   - intent: variantes_vacinas
   - action: utter_uma_ou_todas
   - intent: saber_todas
@@ -99,10 +105,34 @@ stories:
   - action: utter_ask_user_question
   - checkpoint: check_asked_question
 
+- story: qual eficacia contra as variantes de uma vacina específica 2
+  steps:
+  - intent: variantes_vacinas
+  - action: utter_uma_ou_todas
+  - intent: saber_especifica
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: action_inform_eficienciauma_variantes
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+
 - story: quais os efeitos colaterais das vacinas?
   steps:
   - intent: greet
   - action: utter_how_can_I_help
+  - intent: efeitos_colaterais
+  - action: utter_uma_ou_todas
+  - intent: saber_todas
+  - action: action_colaterais
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+- story: quais os efeitos colaterais das vacinas 2
+  steps:
   - intent: efeitos_colaterais
   - action: utter_uma_ou_todas
   - intent: saber_todas
@@ -126,6 +156,23 @@ stories:
   - action: utter_ask_user_question
   - checkpoint: check_asked_question
 
+
+- story: quais os efeitos colaterais de uma vacina específica 2
+  steps:
+  - intent: efeitos_colaterais
+  - action: utter_uma_ou_todas
+  - intent: saber_especifica
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: action_colaterais_uma_vacina
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+
+
 - story: quais os intervalos entre as doses das vacinas?
   steps:
   - intent: greet
@@ -136,6 +183,17 @@ stories:
   - action: action_intervalo_todas_doses
   - action: utter_ask_user_question
   - checkpoint: check_asked_question
+
+- story: quais os intervalos entre as doses das vacinas  2
+  steps:
+  - intent: intervalo_vacinas
+  - action: utter_uma_ou_todas
+  - intent: saber_todas
+  - action: action_intervalo_todas_doses
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+
 
 - story: qual o intervalo entre as doses de uma vacina específica?
   steps:
@@ -153,6 +211,21 @@ stories:
   - action: utter_ask_user_question
   - checkpoint: check_asked_question
 
+- story: qual o intervalo entre as doses de uma vacina específica 2
+  steps:
+  - intent: intervalo_vacinas
+  - action: utter_uma_ou_todas
+  - intent: saber_especifica
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: action_intervalo_doses
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+
 - story: qual a eficacia de uma vacina por faixa etaria?
   steps:
   - intent: greet
@@ -169,11 +242,36 @@ stories:
   - action: utter_ask_user_question
   - checkpoint: check_asked_question
 
+- story: qual a eficacia de uma vacina por faixa etaria 2
+  steps:
+  - intent: eficacia_faixa_etaria
+  - action: utter_uma_ou_todas
+  - intent: saber_especifica
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: action_faixa_etaria_individual
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+
 
 - story: quais as eficacias por faixa etaria das vacinas?
   steps:
   - intent: greet
   - action: utter_how_can_I_help
+  - intent: eficacia_faixa_etaria
+  - action: utter_uma_ou_todas
+  - intent: saber_todas
+  - action: action_faixa_etaria_todas
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+
+- story: quais as eficacias por faixa etaria das vacinas 2
+  steps:
   - intent: eficacia_faixa_etaria
   - action: utter_uma_ou_todas
   - intent: saber_todas
@@ -196,6 +294,64 @@ stories:
   - action: action_eficacia_primeira_dose
   - action: utter_ask_user_question
   - checkpoint: check_asked_question
+
+- story: qual a eficacia de uma vacina (primeira dose) 2
+  steps:
+  - intent: eficacia_imediata
+    entities:
+    - nomevacina
+  - action: utter_primeira_ou_segunda
+  - intent: primeira_dose
+  - action: action_eficacia_primeira_dose
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question  
+
+
+- story: qual a eficacia de uma vacina (segunda dose)
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: eficacia_imediata
+    entities:
+    - nomevacina
+  - action: utter_primeira_ou_segunda
+  - intent: segunda_dose
+  - action: action_eficacia_segunda_dose
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+
+- story: qual a eficacia de uma vacina (segunda dose) 2
+  steps:
+  - intent: eficacia_imediata
+    entities:
+    - nomevacina
+  - action: utter_primeira_ou_segunda
+  - intent: segunda_dose
+  - action: action_eficacia_segunda_dose
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question  
+
+
+- story: usuario continua
+  steps:
+  - checkpoint: check_asked_question
+  - intent: positivo
+  - action: action_restart
+
+- story: usuario para
+  steps:
+  - checkpoint: check_asked_question
+  - intent: negativo
+  - action: utter_fim
+  - checkpoint: check_flow_finished
+
+#- story: fim fluxo
+ # steps:
+  #- checkpoint: check_flow_finished
+  #- intent: fim_chatbot
+  #- action: utter_goodbye
+
 
 - story: mensagens fora do escopo
   steps:
