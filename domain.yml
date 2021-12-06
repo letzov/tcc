@@ -1,10 +1,12 @@
 version: '2.0'
 session_config:
-  session_expiration_time: 60.0
+  session_expiration_time: 60
   carry_over_slots_to_new_session: true
-
 intents:
 - greet
+- intervalo_imediato
+- variante_imediata
+- positivo
 - fora_do_escopo
 - when_vaccine
 - informar_idade
@@ -20,34 +22,27 @@ intents:
 - primeira_dose
 - segunda_dose
 - eficacia_faixa_etaria
-- positivo
 - negativo
 - fim_chatbot
-
+- como_funcionam
+- lista_vacinas
 entities:
-- idade
 - cidade
+- idade
 - nomevacina
-
 slots:
   idade:
     type: text
+    influence_conversation: true
   cidade:
     type: text
+    influence_conversation: true
   nomevacina:
     type: text
-    auto_fill: true
     influence_conversation: false
-    
-forms:
-  nomevacina_form:
-    required_slots:
-      nomevacina:
-        - type: from_entity
-          entity: nomevacina
-
-
 responses:
+  utter_vacinas_disponiveis:
+  - text: as vacinas disponiveis no Brasil são Astrazeneca, Pfizer, Coronavac e Janssen
   utter_fora_do_escopo:
   - text: desculpa, o bot não foi programado para responder essas perguntas
   utter_how_can_I_help:
@@ -84,33 +79,38 @@ responses:
       title: não
     text: gostaria de saber algo a mais?
   utter_fim:
-    - text: fim      
- # utter_goodbye:
-  #- text: volte sempre
-
-
-
+  - text: tchau
+  utter_goodbye:
+  - text: volte sempre
 actions:
-- utter_how_can_I_help
-- utter_ask_idade
-- utter_ask_cidade
-- action_search_google
-- utter_uma_ou_todas
-- utter_vacina_invalida
-- action_inform_eficienciatodas
-- action_inform_eficienciatodas_variantes
-- action_inform_eficienciauma
-- action_inform_eficienciauma_variantes
-- validate_nomevacina_form
 - action_colaterais
 - action_colaterais_uma_vacina
-- action_intervalo_doses
-- action_intervalo_todas_doses
 - action_eficacia_primeira_dose
 - action_eficacia_segunda_dose
-- action_faixa_etaria_todas
 - action_faixa_etaria_individual
-- utter_fora_do_escopo
+- action_faixa_etaria_todas
+- action_inform_eficacia_uma_variantes
+- action_inform_eficiencia_uma
+- action_inform_eficienciatodas
+- action_inform_eficienciatodas_variantes
+- action_intervalo_doses
+- action_intervalo_todas_doses
+- action_search_google
+- action_tecnologia_especifica
+- action_tecnologia_todas
+- utter_ask_cidade
+- utter_ask_idade
 - utter_ask_user_question
 - utter_fim
-#- utter_goodbye
+- utter_fora_do_escopo
+- utter_goodbye
+- utter_how_can_I_help
+- utter_uma_ou_todas
+- utter_vacina_invalida
+- utter_vacinas_disponiveis
+- validate_nomevacina_form
+forms:
+  nomevacina_form:
+    required_slots:
+      nomevacina:
+      - type: from_text
