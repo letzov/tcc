@@ -1,6 +1,25 @@
 version: '2.0'
 
 stories:
+- story: lista de vacinas
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: lista_vacinas
+  - action: utter_vacinas_disponiveis
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+
+
+- story: lista de vacinas 2
+  steps:
+  - intent: lista_vacinas
+  - action: utter_vacinas_disponiveis
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+
 - story: quando se vacinar na minha cidade
   steps:
   - intent: greet
@@ -50,7 +69,7 @@ stories:
   - slot_was_set:
     - requested_slot: nomevacina
   - active_loop: null
-  - action: action_inform_eficienciauma
+  - action: action_inform_eficiencia_uma
   - action: utter_ask_user_question
   - checkpoint: check_asked_question
 
@@ -64,7 +83,7 @@ stories:
   - slot_was_set:
     - requested_slot: nomevacina
   - active_loop: null
-  - action: action_inform_eficienciauma
+  - action: action_inform_eficiencia_uma
   - action: utter_ask_user_question
   - checkpoint: check_asked_question
 
@@ -101,7 +120,7 @@ stories:
   - slot_was_set:
     - requested_slot: nomevacina
   - active_loop: null
-  - action: action_inform_eficienciauma_variantes
+  - action: action_inform_eficacia_uma_variantes
   - action: utter_ask_user_question
   - checkpoint: check_asked_question
 
@@ -115,7 +134,7 @@ stories:
   - slot_was_set:
     - requested_slot: nomevacina
   - active_loop: null
-  - action: action_inform_eficienciauma_variantes
+  - action: action_inform_eficacia_uma_variantes
   - action: utter_ask_user_question
   - checkpoint: check_asked_question
 
@@ -170,8 +189,6 @@ stories:
   - action: action_colaterais_uma_vacina
   - action: utter_ask_user_question
   - checkpoint: check_asked_question
-
-
 
 - story: quais os intervalos entre as doses das vacinas?
   steps:
@@ -280,6 +297,32 @@ stories:
   - checkpoint: check_asked_question
 
 
+- story: qual a eficacia imediata de uma vacina contra as variantes? 
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: variante_imediata
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: action_inform_eficacia_uma_variantes
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+
+- story: qual a eficacia imediata de uma vacina contra as variantes? 2
+  steps:
+  - intent: variante_imediata
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: action_inform_eficacia_uma_variantes
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
 
 
 - story: qual a eficacia de uma vacina (primeira dose)
@@ -287,8 +330,11 @@ stories:
   - intent: greet
   - action: utter_how_can_I_help
   - intent: eficacia_imediata
-    entities:
-    - nomevacina
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
   - action: utter_primeira_ou_segunda
   - intent: primeira_dose
   - action: action_eficacia_primeira_dose
@@ -298,8 +344,11 @@ stories:
 - story: qual a eficacia de uma vacina (primeira dose) 2
   steps:
   - intent: eficacia_imediata
-    entities:
-    - nomevacina
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
   - action: utter_primeira_ou_segunda
   - intent: primeira_dose
   - action: action_eficacia_primeira_dose
@@ -312,8 +361,11 @@ stories:
   - intent: greet
   - action: utter_how_can_I_help
   - intent: eficacia_imediata
-    entities:
-    - nomevacina
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
   - action: utter_primeira_ou_segunda
   - intent: segunda_dose
   - action: action_eficacia_segunda_dose
@@ -324,13 +376,96 @@ stories:
 - story: qual a eficacia de uma vacina (segunda dose) 2
   steps:
   - intent: eficacia_imediata
-    entities:
-    - nomevacina
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
   - action: utter_primeira_ou_segunda
   - intent: segunda_dose
   - action: action_eficacia_segunda_dose
   - action: utter_ask_user_question
   - checkpoint: check_asked_question  
+
+
+- story: como uma vacina funciona?
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: como_funcionam
+  - action: utter_uma_ou_todas
+  - intent: saber_especifica
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: action_tecnologia_especifica
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+- story: como uma vacina funciona 2
+  steps:
+  - intent: como_funcionam
+  - action: utter_uma_ou_todas
+  - intent: saber_especifica
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: action_tecnologia_especifica
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+
+- story: como funcionam todas?
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: como_funcionam
+  - action: utter_uma_ou_todas
+  - intent: saber_todas
+  - action: action_tecnologia_todas
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+
+- story: como funcionam todas 2
+  steps:
+  - intent: como_funcionam
+  - action: utter_uma_ou_todas
+  - intent: saber_todas
+  - action: action_tecnologia_todas
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+- story: qual o intervalo imediato? 
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: intervalo_imediato
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: action_intervalo_doses
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
+
+
+- story: qual o intervalo imediato? 2
+  steps:
+  - intent: intervalo_imediato
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - requested_slot: nomevacina
+  - active_loop: null
+  - action: action_intervalo_doses
+  - action: utter_ask_user_question
+  - checkpoint: check_asked_question
 
 
 - story: usuario continua
@@ -346,11 +481,11 @@ stories:
   - action: utter_fim
   - checkpoint: check_flow_finished
 
-#- story: fim fluxo
- # steps:
-  #- checkpoint: check_flow_finished
-  #- intent: fim_chatbot
-  #- action: utter_goodbye
+- story: fim fluxo
+  steps:
+  - checkpoint: check_flow_finished
+  - intent: fim_chatbot
+  - action: utter_goodbye
 
 
 - story: mensagens fora do escopo
@@ -359,3 +494,29 @@ stories:
   - action: utter_fora_do_escopo
 
 
+- story: interactive_story_1
+  steps:
+  - intent: greet
+  - action: utter_how_can_I_help
+  - intent: variante_imediata
+    entities:
+    - nomevacina: Pfizer
+  - slot_was_set:
+    - nomevacina: Pfizer
+  - action: nomevacina_form
+  - active_loop: nomevacina_form
+  - slot_was_set:
+    - nomevacina: pfizer
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_inform_eficacia_uma_variantes
+  - action: utter_ask_user_question
+  - intent: positivo
+  - action: action_restart
+
+- story: interactive_story_2
+  steps:
+  - action: utter_ask_user_question
+  - intent: positivo
+  - action: action_restart

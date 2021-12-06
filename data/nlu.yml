@@ -1,8 +1,5 @@
-
-version: '2.0'
-
+version: "2.0"
 nlu:
-
 - intent: greet
   examples: |
     - oi
@@ -10,14 +7,11 @@ nlu:
     - bom dia
     - boa tarde
     - boa noite
-
 - intent: variantes_vacinas
   examples: |
     - qual a eficacia das vacinas contra as variantes?
     - qual a eficiencia das vacinas contra as variantes?
     - qual a eficacia das vacinas contra as cepas?
-
-
 - intent: efeitos_colaterais
   examples: |
     - quais são os efeitos colaterais das vacinas?
@@ -28,8 +22,6 @@ nlu:
     - quem se vacinar pode apresentar reações?
     - quem se vacinar pode ter efeitos colaterais?
     - quais são os efeitos colaterais causados pelas vacinas?
-    -
-
 - intent: eficacia_vacinas
   examples: |
     - qual a eficacia das vacinas?
@@ -37,40 +29,34 @@ nlu:
     - as vacinas são eficientes?
     - qual a taxa de eficiencia das vacinas?
     - qual a eficiencia das vacinas?
-
 - intent: saber_todas
   examples: |
     - todas
     - todas elas
     - todas as vacinas
-
 - intent: saber_especifica
   examples: |
     - todas
     - todas elas
     - todas as vacinas
-
 - intent: when_vaccine
   examples: |
     - quando vou poder me vacinar?
     - que dia vou poder me vacinar?
     - quando minha faixa etaria vai poder se vacinar?
     - que dia minha faixa etaria vai tomar a vacina?
-
 - intent: informar_idade
   examples: |
     - tenho [20](idade) anos
     - [30](idade)
     - tenho [60](idade) anos
     - [50](idade) anos
-
 - intent: informar_cidade
   examples: |
     - moro em [ararangua](cidade)
     - [criciuma](cidade)
     - [turvo](cidade)
     - [itajai](cidade)
-
 - intent: informar_nome_vacina
   examples: |
     - [Pfizer](nomevacina)
@@ -79,7 +65,6 @@ nlu:
     - [Moderna](nomevacina)
     - [Janssen](nomevacina)
     - [Sputnik](nomevacina)
-
 - intent: intervalo_vacinas
   examples: |
     - qual o intervalo entre as doses das vacinas?
@@ -87,23 +72,53 @@ nlu:
     - quanto tempo até tomar a segunda dose?
     - quanto tempo leva para tomar a segunda dose?
     - quantos dias entre a primeira e a segunda dose?
-
 - intent: eficacia_imediata
   examples: |
     - qual a eficacia da [Pfizer](nomevacina)
     - qual a eficacia da [Coronavac](nomevacina)
     - qual a eficiencia da [Pfizer](nomevacina)
-    - qual a eficiencia da [Pfizer](nomevacina)
+    - qual a eficacia da [Moderna](nomevacina)
+
+
+- intent: intervalo_imediato
+  examples: |
+    - qual o intervalo entre as doses da [Pfizer](nomevacina)?
+    - qual o intervalo entre as doses da [Coronavac](nomevacina)?
+    - quanto tempo tenho que esperar para tomar a segunda dose da [Coronavac](nomevacina)?
+    - quanto tempo tenho que aguardar para tomar a segunda vacina da [Sputnik](nomevacina)?
+    - qual o intervalo entre cada dose da [Moderna](nomevacina)?
+
+
+- intent: variante_imediata
+  examples: |
+    - qual a eficacia contra as variantes da [Pfizer](nomevacina)
+    - qual a eficiencia da [Pfizer](nomevacina) contra as cepas?
+    - qual a eficacia da [Coronavac](nomevacina) contra as variantes?
+    - qual a eficacia contra as variantes da [Sputnik](nomevacina)?
+    - qual a eficacia contra as variantes da [Pfizer](nomevacina)?
 
 - intent: eficacia_faixa_etaria
   examples: |
     - qual a eficacia das vacinas por faixa etária?
     - qual a eficienca das vacinas por faixa etaria?
     - as vacinas tem a mesma eficacia por faixa etaria?
-
-
+    - quais as eficacias por faixa etaria?
+    - qual vacina funciona melhor para os mais jovens?
+    - qual a vacina mais indicada para os mais velhos?
+    - qual a eficacia por idade?
 - intent: fora_do_escopo
   examples: |
     - cloroquina funciona?
     - vacinas causam autismo?
     - vacinas causam doenças?
+    - as vacinas estão relacionadas a alguma teoria da conspiração?
+- intent: lista_vacinas
+  examples: |
+    - quais as vacinas disponiveis no brasil?
+    - quais vacinas estão sendo oferecidas?
+    - quais vacinas estão sendo aplicadas?
+- intent: como_funcionam
+  examples: |
+    - como as vacinas funcionam?
+    - qual a tecnologia usada pelas vacinas?
+    - de que maneira as vacinas funcionam?
