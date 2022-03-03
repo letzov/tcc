@@ -7,11 +7,27 @@ nlu:
     - bom dia
     - boa tarde
     - boa noite
+    - como vai?
+    - oie
+    - saudações
+    - oi, bom dia
+    - oi boa tarde
+    - ola boa noite
+    - tudo bem?
+    
 - intent: variantes_vacinas
   examples: |
     - qual a eficacia das vacinas contra as variantes?
     - qual a eficiencia das vacinas contra as variantes?
     - qual a eficacia das vacinas contra as cepas?
+    - poderia dizer quais sao as eficacias das vacinas contra as variantes?
+    - qual a taxa de eficiencia da vacinas contra as variantes?
+    - quais vacinas funcionam melhor contra as variantes?
+    - qual a melhor vacina contra as variantes?
+    - qual vacina proteje melhor contra as cepas
+    - que vacina é a melhor contra as variantes?
+    - qual vacina é mais indicada contra as variantes?
+
 - intent: efeitos_colaterais
   examples: |
     - quais são os efeitos colaterais das vacinas?
@@ -29,16 +45,23 @@ nlu:
     - as vacinas são eficientes?
     - qual a taxa de eficiencia das vacinas?
     - qual a eficiencia das vacinas?
+    - qual a taxa de eficacia das vacinas?
+    - qual a taxa de eficacia dos imunizantes?
+    - qual é a eficacia das vacinas?
+    - qual a eficacia das vacinas em porcentagem?
+    - qual vacina apresenta uma eficacia maior?
+    - qual seria a eficacia das vacinas?
+    - poderia me informar a eficacia das vacinas?
 - intent: saber_todas
   examples: |
     - todas
-    - todas elas
+    - saber todas
     - todas as vacinas
+    - todas,  por favor
+    - quero saber de todas
+    - todas elas
 - intent: saber_especifica
   examples: |
-    - todas
-    - todas elas
-    - todas as vacinas
 - intent: when_vaccine
   examples: |
     - quando vou poder me vacinar?
@@ -57,6 +80,16 @@ nlu:
     - [criciuma](cidade)
     - [turvo](cidade)
     - [itajai](cidade)
+    - [brusque](cidade)
+    - [florianópolis](cidade)
+    - [sao jose](cidade)
+    - [franca](cidade)
+    - [santo andre](cidade)
+    - [porto velho](cidade)
+    - [vacaria](cidade)
+    - [tubarão](cidade)
+    - [pescaria brava](cidade)
+    
 - intent: informar_nome_vacina
   examples: |
     - [Pfizer](nomevacina)
@@ -72,30 +105,91 @@ nlu:
     - quanto tempo até tomar a segunda dose?
     - quanto tempo leva para tomar a segunda dose?
     - quantos dias entre a primeira e a segunda dose?
+    - qual o intervalo entre as doses dos imunizantes?
+    - quanto tempo para tomar a segunda dose?
+    - quanto tempo tenho que esperar para tomar a segunda dose?
+
+
+
 - intent: eficacia_imediata
   examples: |
     - qual a eficacia da [Pfizer](nomevacina)
     - qual a eficacia da [Coronavac](nomevacina)
     - qual a eficiencia da [Pfizer](nomevacina)
     - qual a eficacia da [Moderna](nomevacina)
-
+    - qual a eficienca da [Astrazeneca](nomevacina)
+    - qual a taxa de eficacia da [Sputnik](nomevacina)
 
 - intent: intervalo_imediato
   examples: |
     - qual o intervalo entre as doses da [Pfizer](nomevacina)?
     - qual o intervalo entre as doses da [Coronavac](nomevacina)?
     - quanto tempo tenho que esperar para tomar a segunda dose da [Coronavac](nomevacina)?
-    - quanto tempo tenho que aguardar para tomar a segunda vacina da [Sputnik](nomevacina)?
-    - qual o intervalo entre cada dose da [Moderna](nomevacina)?
-
-
+    - intervalo [Janssen](nomevacina)
+    - intervalo [Moderna](nomevacina)
+    - intervalo [Coronavac](nomevacina)
+    - intervalo [Pfizer](nomevacina)
+    - intervalo [Pfizer](nomevacina)
+    - intervalo [Moderna](nomevacina)
+    - intervalo [Janssen](nomevacina)
+    - intervalo [Moderna](nomevacina)
+    - intervalo [Coronavac](nomevacina)
+    - intervalo [Pfizer](nomevacina)
+    - intervalo [Pfizer](nomevacina)
+    - intervalo [Moderna](nomevacina)
+    - intervalo [Janssen](nomevacina)
+    - intervalo [Moderna](nomevacina)
+    - intervalo [Coronavac](nomevacina)
+    - intervalo [Pfizer](nomevacina)
+    - intervalo [Astrazeneca](nomevacina)
+    - intervalo [Janssen](nomevacina)
+    -
 - intent: variante_imediata
   examples: |
-    - qual a eficacia contra as variantes da [Pfizer](nomevacina)
-    - qual a eficiencia da [Pfizer](nomevacina) contra as cepas?
-    - qual a eficacia da [Coronavac](nomevacina) contra as variantes?
-    - qual a eficacia contra as variantes da [Sputnik](nomevacina)?
-    - qual a eficacia contra as variantes da [Pfizer](nomevacina)?
+    - qual a contra as variantes da [Pfizer](nomevacina)
+    - qual a  da [Pfizer](nomevacina) contra as cepas?
+    - qual a  da [Coronavac](nomevacina) contra as variantes?
+    - qual a contra as variantes da [Sputnik](nomevacina)?
+    - qual a  contra as variantes da [Pfizer](nomevacina)?
+    - qual a taxa de  contra as variantes da [Sputnik](nomevacina)
+    - qual a taxa de contra as variantes da [Moderna](nomevacina)
+    - variantes [Moderna](nomevacina)
+    - variante [Moderna](nomevacina)
+    - variante [Sputnik](nomevacina)
+    - variantes [Moderna](nomevacina)
+    - variantes [Pfizer](nomevacina)
+    - variantes [Moderna](nomevacina)
+    - variantes [Janssen](nomevacina)
+    - variantes [Moderna](nomevacina)
+    - variantes [Coronavac](nomevacina)
+    - variantes [Pfizer](nomevacina)
+    - variantes [Pfizer](nomevacina)
+    - variantes [Moderna](nomevacina)
+    - variantes [Janssen](nomevacina)
+    - variantes [Moderna](nomevacina)
+    - variantes [Coronavac](nomevacina)
+    - variantes [Pfizer](nomevacina)
+
+- intent: colateral_imediato
+  examples: |
+    - quais sao os efeitos colaterais da [Moderna](nomevacina)?
+    - quais são os efeitos colaterais da vacina da [Moderna](nomevacina)
+    - efeito colateral [Moderna](nomevacina)
+    - efeito colateral [Moderna](nomevacina)
+    - efeito colateral [Sputnik](nomevacina)
+    - efeito colateral [Moderna](nomevacina)
+    - efeito colateral [Pfizer](nomevacina)
+    - efeito colateral [Moderna](nomevacina)
+    - efeito colateral [Janssen](nomevacina)
+    - efeito colateral [Moderna](nomevacina)
+    - efeito colateral [Coronavac](nomevacina)
+    - efeito colateral [Pfizer](nomevacina)
+    - efeito colateral [Pfizer](nomevacina)
+    - efeito colateral [Moderna](nomevacina)
+    - efeito colateral [Janssen](nomevacina)
+    - efeito colateral [Moderna](nomevacina)
+    - efeito colateral [Coronavac](nomevacina)
+    - efeito colateral [Pfizer](nomevacina)
 
 - intent: eficacia_faixa_etaria
   examples: |
@@ -106,6 +200,31 @@ nlu:
     - qual vacina funciona melhor para os mais jovens?
     - qual a vacina mais indicada para os mais velhos?
     - qual a eficacia por idade?
+
+- intent: faixa_etaria_imediata
+  examples: |
+    - qual a eficacia por faixa etaria da Janssen](nomevacina)
+    - qual a taxa de eficiencia por idade da [Sputnik](nomevacina)
+    - idade [Moderna](nomevacina)
+    - idade [Moderna](nomevacina)
+    - faixa etária [Sputnik](nomevacina)
+    - faixa etária [Moderna](nomevacina)
+    - faixa etária [Pfizer](nomevacina)
+    - idade [Moderna](nomevacina)
+    - idade [Janssen](nomevacina)
+    - faixa etaria [Moderna](nomevacina)
+    - idade [Coronavac](nomevacina)
+    - idade [Pfizer](nomevacina)
+    - faixa etaria [Pfizer](nomevacina)
+    - idade [Moderna](nomevacina)
+    - idade [Janssen](nomevacina)
+    - faixa etaria [Moderna](nomevacina)
+    - faixa etaria [Coronavac](nomevacina)
+    - faixa etaria [Pfizer](nomevacina)    
+
+
+
+
 - intent: fora_do_escopo
   examples: |
     - cloroquina funciona?
@@ -117,8 +236,41 @@ nlu:
     - quais as vacinas disponiveis no brasil?
     - quais vacinas estão sendo oferecidas?
     - quais vacinas estão sendo aplicadas?
+    - quais as vacinas disponiveis?
+    - quais as vacinas oferecidas nos postos de saúde?
+    - que vacinas posso tomar?
+    - quais vacinas o governo comprou?
+    - quais as vacinas que existem no brasil?
+    - quais vacinas disponiveis em território brasileiro?
+    - quais imunizantes disponiveis?
+    - quais imunizantes disponiveis no brasil?
+    - quais sao os imunizantes disponiveis em territorio brasileiro?
+    - quais sao os fabricantes das vacinas no brasil?
+
 - intent: como_funcionam
   examples: |
     - como as vacinas funcionam?
     - qual a tecnologia usada pelas vacinas?
     - de que maneira as vacinas funcionam?
+
+- intent: como_funcionam_imediata
+  examples: |
+    - de que maneira funciona a vacina da [Sputnik](nomevacina)
+    - qual a tecnologia usada na vacina da [Pfizer](nomevacina)
+    - como funciona a vacina da [Coronavac](nomevacina)
+    - como funciona [Moderna](nomevacina)
+    - como funciona [Moderna](nomevacina)
+    - tecnologia [Sputnik](nomevacina)
+    - como funciona [Moderna](nomevacina)
+    - tecnologia [Pfizer](nomevacina)
+    - como funciona [Moderna](nomevacina)
+    - tecnologia [Janssen](nomevacina)
+    - como funciona [Moderna](nomevacina)
+    - tecnologia [Coronavac](nomevacina)
+    - tecnologia [Pfizer](nomevacina)
+    - tecnologia [Pfizer](nomevacina)
+    - como funciona [Moderna](nomevacina)
+    - como funciona [Janssen](nomevacina)
+    - tecnologia [Moderna](nomevacina)
+    - tecnologia [Coronavac](nomevacina)
+    - como funciona [Pfizer](nomevacina)
