@@ -212,7 +212,7 @@ class actioncomofuncionaespecifica(Action):
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         nome = tracker.get_slot('nomevacina')
         if nome in vacinas:
-            dispatcher.utter_message(text ='A vacina ' + nome + ' funciona da seguinte maneira ' + vacinas[nome]['como funciona'] )
+            dispatcher.utter_message(text ='a vacina' + nome + ' funciona da seguinte maneira: ' + vacinas[nome]['tecnologia'] )
         else:
             dispatcher.utter_message(text ='Vacina não encontrada na base de dados')
 
@@ -226,7 +226,7 @@ class actiontecnologiatodas(Action): # pode ser qualquer coisa, mas por padrão 
         domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
         caracteristica = 'tecnologia'
         for nome in vacinas.keys():
-            dispatcher.utter_message(text ='A vacina ' + nome + ' funciona assim '  + caracteristica + " : "  + str(vacinas[nome][caracteristica]))
+            dispatcher.utter_message(text ='A vacina ' + nome + ' funciona da seguinte maneira '  + caracteristica + " : "  + str(vacinas[nome][caracteristica]))
         return []
 
 
@@ -235,7 +235,7 @@ class actiontecnologiatodas(Action): # pode ser qualquer coisa, mas por padrão 
 class ValidateNameForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_nomevacina_form"
-
+        
     def validate_nomevacina(
         self,
         slot_value: Any,
